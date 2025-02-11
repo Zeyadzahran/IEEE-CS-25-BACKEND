@@ -71,7 +71,7 @@ These databases are widely used due to their **scalability, performance, and rel
 
 ---
 # **Task 2**
-- ---
+
 ## **What is RDBMS?**
 
 RDBMS (Relational Database Management System) is a type of database management system (DBMS) that stores data in tables with rows and columns and maintains relationships between the data. It follows the relational model and ensures **data integrity, normalization, and ACID properties** (Atomicity, Consistency, Isolation, Durability).
