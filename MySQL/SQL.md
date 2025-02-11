@@ -225,15 +225,16 @@ Indexes improve query performance by making lookups faster. Types of indexes:
 **تحسين أداء عمليات الربط (JOIN)**: لما يكون عندك استعلامات بتربط بين جداول مختلفة، الفهارس بتسهل الموضوع جدًا، لأنها بتساعد MySQL يلاقي الصفوف المتوافقة بسرعة بدل ما يلفّ على الجدول كله. كل ما زاد عدد الجداول اللي بتربطها ببعض، كل ما كانت الفهارس أهم عشان متخلّيش الاستعلام ياخد وقت طويل ويستهلك موارد كتير.
 
 - **Enforcing data integrity**: In addition to enhancing performance, MySQL indexes also aid in upholding data integrity rules. For instance, unique indexes prevent the insertion of duplicate values into a column, thereby preserving data uniqueness. Likewise, primary key indexes ensure that every row in a table possesses a unique identifier, avoiding unintentional duplicates or isolated data.
+
 **ضمان سلامة البيانات**: الفهارس مش بس بتسرّع الأداء، دي كمان بتحافظ على سلامة البيانات. مثلًا، الفهارس الفريدة (Unique Indexes) بتمنع إنك تضيف قيم مكررة في عمود معين، وده بيضمن إن البيانات متبقاش فيها أخطاء. وكمان المفتاح الأساسي (Primary Key) بيضمن إن كل صف في الجدول ليه رقم تعريفي فريد، وده بيمنع وجود بيانات مكررة أو معزولة ملهاش فايدة.
 
 - **Improved sorting and range queries**: MySQL indexes can significantly enhance the performance of queries that require sorting or filtering by a range of values. By organizing data in a structured order, indexes allow MySQL to quickly locate and retrieve the necessary rows without having to perform expensive sorting operations or search through unnecessary data.
-- 
+ 
 **تحسين عمليات الفرز والاستعلام بالنطاق** : لو عندك استعلام بيطلب ترتيب البيانات أو البحث في نطاق معين، الفهارس بتسهّل الموضوع جدًا. بدل ما MySQL يفرز كل البيانات أو يدور في الجدول كله، الفهارس بتخلّيه يوصّل للبيانات المطلوبة بسرعة من غير مجهود كبير، وده بيسرّع العمليات اللي بتحتاج فرز أو بحث في مدى معين من القيم.
 
 
 
-[Resources]((https://www.percona.com/blog/understanding-mysql-indexes-types-best-practices/)
+[Resources](https://www.percona.com/blog/understanding-mysql-indexes-types-best-practices/)
 
 ---
 
