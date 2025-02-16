@@ -72,6 +72,7 @@ These databases are widely used due to their **scalability, performance, and rel
 ---
 # **Task 2**
 
+
 ## **What is RDBMS?**
 
 RDBMS (Relational Database Management System) is a type of database management system (DBMS) that stores data in tables with rows and columns and maintains relationships between the data. It follows the relational model and ensures **data integrity, normalization, and ACID properties** (Atomicity, Consistency, Isolation, Durability).
@@ -197,6 +198,7 @@ Constraints enforce rules on table columns. Common constraints:
 
 [Resources](https://www.w3schools.com/mysql/mysql_constraints.asp)
 
+
 ---
 
 ## **Indexing in MySQL**
@@ -241,22 +243,23 @@ Indexes improve query performance by making lookups faster. Types of indexes:
 
 ## **MySQL vs. PostgreSQL**
 
-|Feature|MySQL|PostgreSQL|
-|---|---|---|
-|**Speed**|Faster for read-heavy workloads|Better for complex queries & write-heavy workloads|
-|**ACID Compliance**|Fully ACID-compliant (with InnoDB)|Fully ACID-compliant|
-|**JSON Support**|Limited JSON functions|Advanced JSON support|
-|**Concurrency**|Uses table-level locking (for some engines)|Uses MVCC (better concurrency)|
-|**Indexes**|B-tree, Full-text, Spatial|B-tree, Hash, GIN, GiST, BRIN|
-|**Extensibility**|Limited support for procedural languages|Supports custom functions, procedural languages (PL/pgSQL, Python, etc.)|
-|**Replication**|Master-slave, group replication|Logical, physical, and streaming replication|
-|**Community & Plugins**|Large community, many plugins|Advanced features, strong community|
+| Feature                 | MySQL                                       | PostgreSQL                                                               |
+| ----------------------- | ------------------------------------------- | ------------------------------------------------------------------------ |
+| **Speed**               | Faster for read-heavy workloads             | Better for complex queries & write-heavy workloads                       |
+| **ACID Compliance**     | Fully ACID-compliant (with InnoDB)          | Fully ACID-compliant                                                     |
+| **JSON Support**        | Limited JSON functions                      | Advanced JSON support                                                    |
+| **Concurrency**         | Uses table-level locking (for some engines) | Uses MVCC (better concurrency)                                           |
+| **Indexes**             | B-tree, Full-text, Spatial                  | B-tree, Hash, GIN, GiST, BRIN                                            |
+| **Extensibility**       | Limited support for procedural languages    | Supports custom functions, procedural languages (PL/pgSQL, Python, etc.) |
+| **Replication**         | Master-slave, group replication             | Logical, physical, and streaming replication                             |
+| **Community & Plugins** | Large community, many plugins               | Advanced features, strong community                                      |
 - **MySQL**: 
  هو نظام إدارة قواعد بيانات مشهور جدًا وسهل الاستخدام، ومتخصص في السرعة والكفاءة. بيستخدمه ناس كتير في الويب والتطبيقات لأنه خفيف وسريع في عمليات القراءة (`SELECT`). مناسب لو عندك تطبيق مش معقد أوي وعاوز أداء سريع بدون تعقيدات كتير. 
   
 - **PostgreSQL**:  
  بقى نظام أقوى، مصمم عشان يكون **متقدم وقوي جدًا** في التعامل مع البيانات. بيستخدمه الناس اللي عندهم قواعد بيانات معقدة وبيحتاجوا خصائص متطورة زي التعامل مع البيانات الجغرافية، العمليات المعقدة، والالتزام بالمعايير الصارمة للبيانات. مناسب أكتر للمشاريع الكبيرة اللي بتحتاج قوة وتحليل متقدم.
-### **الفرق الأساسي بينهم بقى:**
+###  **الفرق الأساسي بينهم بقى:**
+
 1. **السرعة مقابل القوة**
     
     - **MySQL**
@@ -297,4 +300,50 @@ Indexes improve query performance by making lookups faster. Types of indexes:
 
 ---
 
+# **Task 4**
 
+## **1. Relations: One-to-One, One-to-Many, Many-to-Many**
+
+- **One-to-One (1:1):** In this relationship, a single record in one table corresponds to exactly one record in another table. This is often used to separate data for organizational or security reasons. For example, in a healthcare database, each patient in the "Patients" table has a unique medical record in the "MedicalRecords" table.
+    
+    _Source:_ [Database Relationships Explained: Key Concepts and Best Practices](https://www.acceldata.io/blog/database-relationships-explained-key-concepts-and-best-practices)
+    
+   العلاقة دي معناها إن كل سجل في جدول معين بيرتبط بسجل واحد بس في جدول تاني. بتستخدم عشان ننظم البيانات أو نحميها. زي مثلًا في قاعدة بيانات مستشفى، كل مريض ليه ملف طبي خاص بيه.
+    
+- **One-to-Many (1:N):** Here, a single record in one table can be associated with multiple records in another table. This is the most common type of relationship. For instance, an "Authors" table might be linked to a "Books" table, where each author has written multiple books.
+    
+    _Source:_ [Database Relationships Explained: Key Concepts and Best Practices](https://www.acceldata.io/blog/database-relationships-explained-key-concepts-and-best-practices)
+    
+ العلاقة دي معناها إن سجل واحد في جدول معين ممكن يكون مرتبط بأكتر من سجل في جدول تاني. ودي أكتر علاقة شائعة. زي مثلًا جدول "المؤلفين" اللي كل مؤلف فيه كتب كتب كتير.
+    
+- **Many-to-Many (N:N):** In this relationship, multiple records in one table are associated with multiple records in another. For example, students enrolling in courses: each student can enroll in multiple courses, and each course can have multiple students. Implementing this in a relational database typically requires a junction table to manage the associations.
+    
+    _Source:_ [Database Relationships Explained: Key Concepts and Best Practices](https://www.acceldata.io/blog/database-relationships-explained-key-concepts-and-best-practices)
+    
+ العلاقة دي معناها إن فيه سجلات كتير في جدول معين مرتبطة بسجلات كتير في جدول تاني. زي مثلًا الطلبة والكورسات: كل طالب ممكن يسجل في كذا كورس، وكل كورس فيه طلبة كتير. عشان نطبق العلاقة دي في قاعدة بيانات، بنستخدم جدول وسيط ينظم العلاقات دي.
+    
+
+## **2. Write-Ahead Logging (WAL)**
+
+Write-Ahead Logging is a technique used to ensure data integrity. Before making any changes to the main data, the changes are first recorded in a log. This ensures that if a system crash occurs during the update, the system can recover by replaying the log entries, maintaining consistency and durability.
+
+_Source:_ [The Write-Ahead Log: A Foundation for Reliability in Databases and Distributed Systems](https://www.architecture-weekly.com/p/the-write-ahead-log-a-foundation)
+
+ الـWrite-Ahead Logging دي طريقة بنستخدمها عشان نحافظ على سلامة البيانات. قبل ما نغير أي حاجة في البيانات الأساسية، بنسجل التغييرات دي في سجل الأول. ده بيضمن إنه لو حصلت مشكلة في النص وإحنا بنحدّث البيانات، النظام يقدر يسترجع التغييرات من السجل ويحافظ على التناسق.
+
+## **3. Normalization and Denormalization**
+
+- **Normalization:** This is the process of organizing data to reduce redundancy and improve data integrity. It involves dividing large tables into smaller, related tables and defining relationships between them. The goal is to ensure that each piece of data is stored only once.
+    
+- **Denormalization:** This is the process of combining tables to reduce the complexity of queries and improve read performance. While it introduces some redundancy, it can be beneficial in scenarios where read operations are more frequent than write operations.
+    
+
+_Source:_ [Denormalization](https://en.wikipedia.org/wiki/Denormalization)
+
+
+- **ال (Normalization):** دي عملية بننظم فيها البيانات عشان نقلل التكرار ونحسن سلامة البيانات. بنعمل ده عن طريق تقسيم الجداول الكبيرة لجداول أصغر ومترابطة، وبنحدد العلاقات بينها. الهدف إن كل معلومة تتخزن مرة واحدة بس.
+    
+- **التطبيع (Denormalization)** دي عملية بنجمع فيها الجداول عشان نقلل تعقيد الاستعلامات ونحسن أداء قراءة البيانات. مع إنها بتزود شوية تكرار، لكنها مفيدة في الحالات اللي فيها عمليات القراءة أكتر من عمليات الكتابة.
+    
+
+**Normalization** focuses on reducing redundancy and ensuring data integrity by structuring data into related tables. Denormalization, on the other hand, aims to improve read performance by merging tables, accepting some redundancy as a trade-off.
