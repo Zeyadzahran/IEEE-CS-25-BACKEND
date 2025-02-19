@@ -346,4 +346,113 @@ _Source:_ [Denormalization](https://en.wikipedia.org/wiki/Denormalization)
 - **التطبيع (Denormalization)** دي عملية بنجمع فيها الجداول عشان نقلل تعقيد الاستعلامات ونحسن أداء قراءة البيانات. مع إنها بتزود شوية تكرار، لكنها مفيدة في الحالات اللي فيها عمليات القراءة أكتر من عمليات الكتابة.
     
 
-**Normalization** focuses on reducing redundancy and ensuring data integrity by structuring data into related tables. Denormalization, on the other hand, aims to improve read performance by merging tables, accepting some redundancy as a trade-off.
+**Normalization** focuses on reducing redundancy and ensuring data integrity by structuring data into related tables. **Denormalization**, on the other hand, aims to improve read performance by merging tables, accepting some redundancy as a trade-off.
+
+--- 
+# **Task 5**
+
+
+## **1- Multi-Version Concurrency Control (MVCC)**
+
+MVCC is a concurrency control method that allows multiple transactions to access the database simultaneously without blocking each other. Instead of locking data, it maintains multiple versions of the same row to ensure **consistent reads** without interfering with writes.
+
+### **How It Works:**
+
+- When a transaction starts, it sees a **snapshot** of the data at that moment.
+- Updates create **new versions** instead of modifying the existing ones.
+- Old versions remain accessible to transactions that started before the update.
+- The system periodically removes outdated versions using **garbage collection**.
+
+### **Advantages:**
+
+✔ Improves performance by reducing locks.  
+✔ Supports **consistent reads** without blocking writes.  
+✔ Reduces transaction conflicts.
+
+### **Disadvantages:**
+
+✖ Requires more **storage** for multiple versions.  
+✖ Needs **extra processing** for cleaning old versions.
+
+بص يا كبير، الـ **MVCC** بيخلي أكتر من حد يقدر يشتغل على الداتا من غير ما يعطل حد تاني. أي تعديل بيعمل نسخة جديدة بدل ما يعدل على القديمة، فكل واحد بيشوف الداتا كأنها ثابتة. حلو في الأداء، بس بياخد مساحة زيادة.
+
+[Resourses](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/What-is-MVCC-How-does-Multiversion-Concurrencty-Control-work)
+
+## **2- Triggers in Databases**
+
+A **trigger** is an automatic procedure that runs when a specific event occurs in the database. Triggers help enforce rules, log changes, or automate workflows.
+
+### **Types of Triggers:**
+
+- **Before Triggers:** Run **before** an operation (INSERT, UPDATE, DELETE).
+- **After Triggers:** Run **after** an operation.
+- **Instead of Triggers:** Replace an operation with a custom action.
+
+```sql
+CREATE TRIGGER after_insert_employee  
+AFTER INSERT ON employees  
+FOR EACH ROW  
+BEGIN  
+   INSERT INTO log_table (action, timestamp)  
+   VALUES ('New employee added', NOW());  
+END;
+
+```
+
+### **Advantages:**
+
+✔ Automates tasks like logging or validation.  
+✔ Ensures **data integrity** by enforcing rules.  
+✔ Reduces the need for application-side logic.
+
+### **Disadvantages:**
+
+✖ Can impact performance if overused.  
+✖ Debugging triggers is more complex than normal queries.
+
+
+
+ التريجر ده زي عين سحرية في الداتابيز، أول ما يحصل إدخال أو تعديل أو حذف، بينفذ كود تلقائيًا. بيستخدموه عشان يعملوا **لوجات** أو يتأكدوا إن الداتا سليمة. بس لو استخدمته كتير ممكن يعمل تهنيج.
+
+[Resource]([SQL Trigger - GeeksforGeeks](https://www.geeksforgeeks.org/sql-trigger-student-database/))
+## **3- How to Take a Database Backup**
+
+Database backups are essential for **disaster recovery** and **data protection**. There are multiple ways to back up a database, depending on the system you use.
+
+### **Methods:**
+
+1. **Using SQL Commands (SQL Server):**
+    ```sql
+BACKUP DATABASE my_database  
+TO DISK = 'C:\backup\my_database.bak';
+```
+
+2. **Using mysqldump (MySQL):**
+	```sql
+		mysqldump -u root -p my_database > backup.sql
+```
+
+1. **Using PostgreSQL pg_dump:**
+	```sql
+	pg_dump -U username -F c -b -v -f backup_file.dump database_name
+
+```
+
+
+4. **Cloud Backups:**
+    
+    - AWS RDS
+    - Google Cloud SQL
+    - Azure SQL Backup
+
+### **Best Practices:**
+
+✔ Schedule regular backups.  
+✔ Store backups in multiple locations.  
+✔ Encrypt backups for security.
+
+بص يا زعيم، الباك أب ده زي الحزام في العربية، لو حصلت مصيبة، تقدر ترجع كل حاجة. ممكن تاخد الباك أب بـ **SQL commands**، أو تستخدم أدوات زي **mysqldump**، أو تعتمد على السحابة زي **AWS و Google Cloud**. أهم حاجة تعمله **بشكل منتظم** عشان متندمش بعدين.
+
+[Resources](https://blog.doubleslash.de/en/software-technologien/db-backup)
+
+---
