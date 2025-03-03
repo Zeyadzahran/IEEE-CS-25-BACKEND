@@ -100,16 +100,34 @@ Here, `$name` and `$Name` are different variables.
 
 - **Programming Language:** A broad category of languages used to develop software, including system software, applications, and utilities. Examples: C, C++, Java.
 - **Scripting Language:** A subset of programming languages, usually interpreted rather than compiled, and used for automating tasks or enhancing software. Examples: Python, JavaScript, Bash.
-- [What are Scripting Languages? - GeeksforGeeks](https://www.geeksforgeeks.org/what-are-scripting-languages/)
+
+ [What are Scripting Languages? - GeeksforGeeks](https://www.geeksforgeeks.org/what-are-scripting-languages/)
 
 ### **2. Dynamically Typed vs. Statically Typed Language**
 
 - **Dynamically Typed:** Variables do not have a fixed type; the type is determined at runtime. Example: Python, JavaScript.
 - **Statically Typed:** Variables have a predefined type, checked at compile-time. Example: C, Java.
-- [Type Systems:Dynamic Typing, Static Typing & Duck Typing - GeeksforGeeks](https://www.geeksforgeeks.org/type-systemsdynamic-typing-static-typing-duck-typing/)
+
+ [Type Systems:Dynamic Typing, Static Typing & Duck Typing - GeeksforGeeks](https://www.geeksforgeeks.org/type-systemsdynamic-typing-static-typing-duck-typing/)
 
 ### **3. Assign by Value vs. Assign by Reference**
 
 - **Assign by Value:** A copy of the data is assigned to a new variable. Changes to one variable do not affect the other. Example: `int a = 5; int b = a;`
 - **Assign by Reference:** The variable stores a reference to the original data, meaning changes affect both variables. Example: `List a = [1,2,3]; List b = a;` in Python.
-- [c++ - Assignment by value vs by reference? - Stack Overflow](https://stackoverflow.com/questions/61249860/assignment-by-value-vs-by-reference)
+
+ [c++ - Assignment by value vs by reference? - Stack Overflow](https://stackoverflow.com/questions/61249860/assignment-by-value-vs-by-reference)
+
+# **Task 3**
+
+|Feature|`for` Loop|`foreach` Loop|
+|---|---|---|
+|**Usage**|Works with numeric iterations|Works with arrays and objects|
+|**Index-Based**|Requires manual indexing (`$i`)|Automatically iterates over elements|
+|**Data Type**|Works with numbers and arrays|Works only with arrays and objects|
+|**Best For**|When you know the number of iterations|When looping through an array without knowing its length|
+[PHP: for - Manual](https://www.php.net/manual/en/control-structures.for.php)
+[PHP: foreach - Manual](https://www.php.net/manual/en/control-structures.foreach.php)
+
+
+---
+
