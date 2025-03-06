@@ -117,9 +117,6 @@ Here, `$name` and `$Name` are different variables.
 
  [c++ - Assignment by value vs by reference? - Stack Overflow](https://stackoverflow.com/questions/61249860/assignment-by-value-vs-by-reference)
 
- ---
- 
-
 # **Task 3**
 
 |Feature|`for` Loop|`foreach` Loop|
@@ -134,3 +131,52 @@ Here, `$name` and `$Name` are different variables.
 
 ---
 
+# **Task 3**
+
+
+##  **Sessions vs. Cookies in PHP**  
+### *Sessions:*  
+- Stored on the **server**.  
+- More **secure**, as data is not accessible by users.  
+- **Short-lived**, usually deleted when the browser is closed.  
+- Used for **sensitive data** like user authentication.  
+
+### *Cookies:*  
+- Stored on the **user’s browser**.  
+- Less secure since users can modify them.  
+- Can persist for **days, weeks, or months**.  
+- Used for **preferences**, tracking, or non-sensitive data.  
+
+[PHP Sessions & Cookies Guide](https://www.php.net/manual/en/features.cookies.php)  
+
+---
+
+##  **Error Handling in PHP**  
+### *Types of Errors:*  
+1. **Parse Errors** → Occur due to syntax mistakes.  
+2. **Runtime Errors** → Happen during execution (e.g., division by zero).  
+3. **Logical Errors** → The code runs but gives incorrect results.  
+
+### *Ways to Handle Errors in PHP:*  
+- **Using `try...catch` for exceptions:**  
+  ```php
+  try {
+      $num = 10 / 0;
+  } catch (Exception $e) {
+      echo "Error: " . $e->getMessage();
+  }
+
+```
+
+### **3. How PHP Executes Code**
+
+1. **Lexing & Parsing:**
+    - PHP **breaks down** the code into tokens for understanding.
+2. **Compilation to Bytecode:**
+    - The code is converted into **an intermediate format**.
+3. **Execution by Zend Engine:**
+    - The **Zend Engine** processes the bytecode.
+4. **Output to Browser:**
+    - The final output is sent as **HTML** to the browser.
+
+[parsing - How exactly is a PHP script executed? - Stack Overflow](https://stackoverflow.com/questions/2720488/how-exactly-is-a-php-script-executed)
