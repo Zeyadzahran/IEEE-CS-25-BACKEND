@@ -16,6 +16,7 @@ OOP was created to improve **code organization, reusability, and maintainability
    * Example: Using abstract classes in PHP.
 
 🔹 **Example in PHP:**
+
 ```php
 class BankAccount {
     private $balance;
@@ -28,7 +29,9 @@ class BankAccount {
         // Abstraction
         return $this->balance;
     }
-}```
+}
+```
+
 
 
 ## **2. Inheritance**
@@ -38,6 +41,7 @@ Inheritance allows a child class to inherit properties and methods from a parent
 - Helps in **code reuse** and **extensibility**.
 
 🔹 **Example in PHP**
+
 
 ```php
 class Animal {
@@ -54,9 +58,7 @@ class Dog extends Animal {
 
 $dog = new Dog();
 echo $dog->makeSound(); // Output: Bark!
-
 ```
-
 
 ---
 
