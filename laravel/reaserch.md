@@ -110,3 +110,122 @@ $value = Cache::get('key');
 4. Define a `getFacadeAccessor()` method returning the binding key.
 
 [Facades - Laravel 11.x - The PHP Framework For Web Artisans](https://laravel.com/docs/11.x/facades)
+
+
+## 1. Blade Templates — and how they work
+
+### What is Blade?
+
+**Blade** is Laravel’s built-in **template engine**.  
+It allows you to write **HTML** pages mixed with **PHP logic** easily and cleanly.
+
+Instead of writing messy PHP in your HTML files, Blade gives you **special syntax** to keep things **organized**, **readable**, and **powerful**.
+
+---
+
+### How Blade works:
+
+- Blade files have **`.blade.php`** extension.  
+    Example: `resources/views/welcome.blade.php`
+    
+- Blade provides **directives** like:
+    
+    - `@if`, `@foreach`, `@extends`, `@section`, `@yield`, `@include`, etc.
+        
+- When you load a Blade view, Laravel **compiles** it into pure **PHP** and caches it for faster performance.
+    
+- **Variables** in Blade are displayed like:
+
+```php
+Hello, {{ $name }}
+```
+
+- **Blade layouts** allow you to make a **master template** and then extend it in other pages.
+    
+
+---
+
+### Example:
+
+**Master Layout (`layouts/app.blade.php`)**
+
+```php
+<html>
+<head>
+    <title>My App - @yield('title')</title>
+</head>
+<body>
+    @yield('content')
+</body>
+</html>
+```
+
+Child Page (`home.blade.php`)
+```php
+@extends('layouts.app')
+
+@section('title', 'Home Page')
+
+@section('content')
+    <h1>Welcome Home!</h1>
+@endsection
+```
+
+Result when loaded: a full HTML page!
+
+### Why Use Blade :
+
+- Clean and simple syntax
+    
+- Easy to **re-use** components
+    
+- Built-in **security**: automatically escapes variables (prevents XSS)
+    
+- Fast (because Blade compiles to PHP)
+
+[Blade Templates - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/blade)
+
+---
+## 2. What is ORM, and why is it useful?
+
+### What is ORM?
+
+**ORM** = **Object Relational Mapping**
+
+It’s a way to **interact with the database** using **objects** instead of writing raw SQL queries.
+
+In Laravel, the ORM is called **Eloquent**.
+
+---
+
+### Example:
+
+Without ORM (normal SQL):
+
+```php
+$sql = "SELECT * FROM users WHERE id = 1";
+```
+
+With Eloquent ORM:
+```php
+$user = User::find(1);
+```
+
+**`User`** is now an **object** representing a database row.  
+You can do things like `$user->name` instead of dealing with raw arrays!
+
+### Why ORM is so useful:
+
+- **Cleaner code**: No need to write raw SQL for basic operations
+    
+- **Safer**: Protects against SQL injection automatically
+    
+- **Easier relationships**: One-to-Many, Many-to-Many, etc. are simple
+    
+- **Faster development**: Less code to maintain
+    
+- **Eloquent methods** are easy to chain (`User::where('active', true)->get();`)
+
+[Eloquent: Getting Started - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/eloquent)
+
+---
