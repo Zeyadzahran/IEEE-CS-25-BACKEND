@@ -229,6 +229,30 @@ You can do things like `$user->name` instead of dealing with raw arrays!
 [Eloquent: Getting Started - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/eloquent)
 
 ---
+## **Defining Relationships in Eloquent Models**
+
+Laravel Eloquent makes it easy to define relationships between models using built-in methods:
+
+| **Relationship Type** | **Method (in Model)**        | **Example**                           |
+| --------------------- | ---------------------------- | ------------------------------------- |
+| One to One            | `hasOne`, `belongsTo`        | `User hasOne Profile`                 |
+| One to Many           | `hasMany`, `belongsTo`       | `Post hasMany Comments`               |
+| Many to Many          | `belongsToMany`              | `User belongsToMany Roles`            |
+| Has Many Through      | `hasManyThrough`             | `Country hasMany Posts through Users` |
+| Polymorphic           | `morphTo`, `morphMany`, etc. | `Comment belongs to Post or Video`    |
+*Example :* 
+
+```php
+// In User model
+public function posts() {
+    return $this->hasMany(Post::class);
+}
+```
+
+
+[Eloquent: Relationships - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/eloquent-relationships)
+
+---
 ## **Attaching, Syncing, Detaching Related Records (Many-to-Many)**
 
 Eloquent provides methods to manage pivot table data easily.
@@ -264,6 +288,10 @@ $user->roles()->detach();        // all
 
 ```
 
+[Eloquent: Relationships - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/eloquent-relationships#inserting-and-updating-related-models)
+
+---
+
 ## **The N+1 Query Problem**
 
 This happens when you run one query to get a list of models, then another for each item’s related model.
@@ -288,5 +316,9 @@ Use `with()` to fetch related data in one query:
 ```php
 $users = User::with('profile')->get(); // Only two queries in total
 ```
+
+[Eloquent: Relationships - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/eloquent-relationships#eager-loading)
+
+---
 
 ---
