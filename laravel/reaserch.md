@@ -229,3 +229,64 @@ You can do things like `$user->name` instead of dealing with raw arrays!
 [Eloquent: Getting Started - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/eloquent)
 
 ---
+## **Attaching, Syncing, Detaching Related Records (Many-to-Many)**
+
+Eloquent provides methods to manage pivot table data easily.
+
+####  Attaching
+
+```php
+$user->roles()->attach($roleId);
+```
+
+You can also attach with extra pivot data:
+
+```php
+$user->roles()->attach($roleId, ['expires_at' => now()->addDays(10)]);
+```
+
+#### Syncing
+
+Replace current roles with new ones:
+
+
+```php
+$user->roles()->sync([1, 2, 3]);
+```
+
+####  Detaching
+
+Remove one or all roles:
+
+```php
+$user->roles()->detach($roleId); // specific
+$user->roles()->detach();        // all
+
+```
+
+## **The N+1 Query Problem**
+
+This happens when you run one query to get a list of models, then another for each item’s related model.
+
+**Example (bad):**
+
+
+```php
+$users = User::all(); // One query
+foreach ($users as $user) { 
+	echo $user->profile->bio; // One query per user (N queries)
+}
+
+```
+
+
+####  Solution: Eager Loading
+
+Use `with()` to fetch related data in one query:
+
+
+```php
+$users = User::with('profile')->get(); // Only two queries in total
+```
+
+---
