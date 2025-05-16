@@ -440,3 +440,103 @@ This simplifies creating interactive UI components like modals, tabs, and live f
 > بتعرض الـ requests، الـ exceptions، الـ jobs، الـ queries، كل حاجة بالتفصيل.  
 > مثال: لو عندك Bug وانت مش فاهم جه منين، Telescope ممكن يوضحلك هو جه من انهي ميدل وير أو كويري.
 ---
+
+## **Laravel Gates**
+
+**Gates** are a simple way to authorize actions for users. They are typically used for _single-action_ authorization and defined in `App\Providers\AuthServiceProvider`.
+
+### 🔹 Example:
+
+```php
+Gate::define('edit-post', function (User $user, Post $post) {
+    return $user->id === $post->user_id;
+});
+
+```
+
+### 🔹 Usage:
+```php
+if (Gate::allows('edit-post', $post)) {
+    // Allow edit
+}
+
+```
+
+> Think of **Gates** as _closures_ that check permissions for a specific action.
+
+[Authorization - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/authorization#gates)
+
+---
+
+
+## **Sanctum vs Passport**
+
+|Feature|**Sanctum**|**Passport**|
+|---|---|---|
+|Use Case|SPAs or simple API token auth|OAuth2 (advanced API auth)|
+|Protocol|Simple token-based auth|Full OAuth2 implementation|
+|Setup|Easy (less configuration)|More complex (OAuth setup)|
+|Token Type|Personal access tokens (JWT-like)|Access tokens (OAuth2)|
+|Authentication|Supports web + API auth|Only API (OAuth2 client credentials)|
+|Performance|Lightweight|Heavier|
+
+### 🔹 When to Use:
+
+- **Sanctum**: When you're building a SPA, mobile app, or using token auth without OAuth.
+    
+- **Passport**: When you need OAuth2 features like third-party login or scopes.
+
+[Laravel Sanctum - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/sanctum)
+
+[Laravel Passport - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/passport)
+
+---
+
+## **Guard vs Middleware**
+
+### 🔸 **Guard**
+
+A **guard** defines how users are authenticated for each request. Guards are configured in `config/auth.php`.
+
+```php
+'guards' => [
+    'web' => ['driver' => 'session', 'provider' => 'users'],
+    'api' => ['driver' => 'token', 'provider' => 'users'],
+]
+```
+
+You can switch guards like this:
+
+```php
+Auth::guard('api')->user();
+```
+> Use guards when you have **different ways to authenticate** users (e.g. web vs API).
+
+---
+
+### 🔸 **Middleware**
+
+**Middleware** filters HTTP requests before they reach the controller. Common use cases:
+
+- Checking if the user is authenticated
+    
+- Checking roles/permissions
+    
+- Adding headers, etc.
+    
+
+Example:
+```php
+Route::get('/admin', function () {
+    // Only for admins
+})->middleware('auth', 'is_admin');
+```
+Middleware is like a **gatekeeper** for routes. Guards are about _how_ users are authenticated, middleware is about _what happens after_.
+
+
+[Authentication - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/authentication#introduction)
+
+[Middleware - Laravel 12.x - The PHP Framework For Web Artisans](https://laravel.com/docs/12.x/middleware)
+
+---
+
