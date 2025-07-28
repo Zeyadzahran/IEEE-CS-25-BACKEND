@@ -526,3 +526,167 @@ function main() {
 }
 
 //////////////----11-------
+
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.trim().split('\n').map(string => {
+        return string.trim();
+    });
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the isPositive function.
+ * If 'a' is positive, return "YES".
+ * If 'a' is 0, throw an Error with the message "Zero Error"
+ * If 'a' is negative, throw an Error with the message "Negative Error"
+ */
+function isPositive(a) {
+    if (a > 0) return "YES";
+    else if (a == 0) throw new Error("Zero Error");
+    else throw new Error("Negative Error");
+
+}
+
+
+function main() {
+    const n = +(readLine());
+
+    for (let i = 0; i < n; i++) {
+        const a = +(readLine());
+
+        try {
+            console.log(isPositive(a));
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+}
+
+
+
+////////-------------------------12----------------------------
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.trim().split('\n').map(string => {
+        return string.trim();
+    });
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the Rectangle function
+ */
+function Rectangle(a, b) {
+    let rec = {
+        length: a,
+        width: b,
+        perimeter: (2 * (a + b)),
+        area: (a * b),
+    }
+    return rec;
+
+}
+
+
+function main() {
+    const a = +(readLine());
+    const b = +(readLine());
+
+    const rec = new Rectangle(a, b);
+
+    console.log(rec.length);
+    console.log(rec.width);
+    console.log(rec.perimeter);
+    console.log(rec.area);
+}
+
+///-------------13-----------------
+
+
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.trim().split('\n').map(string => {
+        return string.trim();
+    });
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Return a count of the total number of objects 'o' satisfying o.x == o.y.
+ * 
+ * Parameter(s):
+ * objects: an array of objects with integer properties 'x' and 'y'
+ */
+function getCount(objects) {
+    let cnt = 0;
+    for (let i = 0; i < objects.length; ++i) {
+        if (objects[i].x == objects[i].y) ++cnt;
+    }
+    return cnt;
+}
+
+
+function main() {
+    const n = +(readLine());
+    let objects = [];
+
+    for (let i = 0; i < n; i++) {
+        const [a, b] = readLine().split(' ');
+
+        objects.push({ x: +(a), y: +(b) });
+    }
+
+    console.log(getCount(objects));
+}
+
+///-------------------------14----------
+
